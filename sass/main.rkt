@@ -27,8 +27,8 @@
 (define (prepare-context! context)
   (define options (sass_context_get_options context))
   (for ([path (reverse (current-include-paths))])
-    ;; Unlike Sass_Data_Context, this function does not take ownership
-    ;; of path.  Cool.
+    ;; Unlike sass_make_data_context, this function does not take
+    ;; ownership of path.  Cool.
     (sass_option_push_include_path options path)))
 
 (define ((make-compiler #:constructor make-wrapper
