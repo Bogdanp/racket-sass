@@ -24,9 +24,16 @@
 
   Compile a SCSS file, bytes or a string into a string of CSS.  Raises
   @racket[exn:fail:sass?] on error.
+
+  Files referenced in @exec{@"@"import} statements are searched using
+  the value of @racket[current-include-paths].
 }
 
 @deftogether[
   (@defproc[(exn:fail:sass? [v any/c]) boolean?]
    @defproc[(exn:fail:sass-code [e exn:fail:sass?]) exact-integer?])]{
+}
+
+@defparam[current-include-paths paths (listof path-string?) #:value null]{
+  A parameter that controls where SCSS imports should be looked up.
 }
