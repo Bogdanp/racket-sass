@@ -1,8 +1,7 @@
 #lang racket/base
 
 (require ffi/unsafe
-         ffi/unsafe/define
-         libsass)
+         ffi/unsafe/define)
 
 (provide
  bytes->unmanaged-cstring
@@ -35,7 +34,7 @@
 
 ;; Basics ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define-ffi-definer define-sass (ffi-lib (or libsass-path "libsass")))
+(define-ffi-definer define-sass (ffi-lib "libsass"))
 
 (define-sass libsass_version (_fun -> _string))
 (define-sass libsass_language_version (_fun -> _string))
