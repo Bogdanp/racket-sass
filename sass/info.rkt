@@ -4,7 +4,8 @@
 (define collection "sass")
 (define deps '("base"
                ("libsass-x86_64-linux" #:platform "x86_64-linux")
-               ("libsass-x86_64-macosx" #:platform "x86_64-macosx")))
+               ("libsass-x86_64-macosx" #:platform "x86_64-macosx")
+               ("libsass-x86_64-win32" #:platform "win32\\x86_64")))
 (define build-deps '("racket-doc"
                      "rackunit-lib"
                      "scribble-lib"))
