@@ -1,5 +1,7 @@
 # racket-sass
 
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FBogdanp%2Fracket-sass%2Fbadge&style=flat)](https://actions-badge.atrox.dev/Bogdanp/racket-sass/goto)
+
 Racket bindings for [libsass].
 
 ## TODOs

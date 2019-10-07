@@ -1,0 +1,11 @@
+on: push
+name: main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Build and Test
+      uses: docker://jackfirth/racket:7.3-full
+      with:
+        entrypoint: /github/workspace/ci/build.sh
