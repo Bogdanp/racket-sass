@@ -4,9 +4,12 @@
 
 Racket bindings for [libsass].
 
+Documentation is available at [docs.racket-lang.org][docs].
+
 ## TODOs
 
 * [ ] support for custom [`Sass_Options`](https://github.com/sass/libsass/blob/master/docs/api-context.md#basic-usage).
 
 
+[docs]: https://docs.racket-lang.org/sass/index.html
 [libsass]: https://github.com/sass/libsass
