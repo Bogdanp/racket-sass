@@ -76,6 +76,14 @@
 (module+ test
   (require rackunit)
 
+  (define (normalize-line-endings s)
+    (string-replace s "\r" ""))
+
+  (define-check (check-normalized-string= a b)
+    (unless (string=? (normalize-line-endings a)
+                      (normalize-line-endings b))
+      (fail-check)))
+
   (test-case "can compile SCSS files to CSS"
     (define output
       (compile/file "resources/test.scss"))
@@ -87,7 +95,7 @@ body {
 STYLE
       )
 
-    (check-equal? output expected))
+    (check-normalized-string= output expected))
 
   (test-case "can compile SCSS strings to CSS"
     (define output
@@ -114,7 +122,7 @@ body {
 STYLE
       )
 
-    (check-equal? output expected))
+    (check-normalized-string= output expected))
 
   (test-case "can include files off the include path"
     (define output
@@ -133,7 +141,7 @@ STYLE
 STYLE
       )
 
-    (check-equal? output expected))
+    (check-normalized-string= output expected))
 
   (test-case "raises an exception when an included file can't be found on the path"
     (check-exn
@@ -147,7 +155,7 @@ STYLE
     (check-exn
      (lambda (e)
        (and (exn:fail:sass? e)
-            (check-equal? (exn-message e) #<<MESSAGE
+            (check-normalized-string= (exn-message e) #<<MESSAGE
 Error: Invalid CSS after "a {": expected "}", was ""
         on line 1:3 of stdin
 >> a {
