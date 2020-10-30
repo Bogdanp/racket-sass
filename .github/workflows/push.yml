@@ -1,11 +1,31 @@
-on: push
-name: main
+on: [push, pull_request]
+name: CI/CD
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: "Build on ${{ matrix.os }}, ${{ matrix.version }} (${{ matrix.variant }})"
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: ["CS", "regular"]
+        version: ["7.7", "7.8", "current"]
+        os: ["macos-latest", "ubuntu-latest", "windows-latest"]
+
     steps:
-    - uses: actions/checkout@master
-    - name: Build and Test
-      uses: docker://jackfirth/racket:7.3-full
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Install Racket
+      uses: Bogdanp/setup-racket@v0.10
       with:
-        entrypoint: /github/workspace/ci/build.sh
+        architecture: x64
+        distribution: full
+        variant: ${{ matrix.variant }}
+        version: ${{ matrix.version }}
+
+    - name: Install pkg and deps
+      run: raco pkg install --batch --auto sass/
+
+    - name: Run tests
+      run: raco test -j 4 -l sass
