@@ -29,7 +29,7 @@
   (for ([path (reverse (current-include-paths))])
     ;; Unlike sass_make_data_context, this function does not take
     ;; ownership of path.  Cool.
-    (sass_option_push_include_path options path)))
+    (sass_option_push_include_path options (path->complete-path path))))
 
 (define ((make-compiler #:constructor make-wrapper
                         #:destructor free-wrapper

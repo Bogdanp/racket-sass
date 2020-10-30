@@ -43,7 +43,7 @@
 ;; Sass_Options ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define _Sass_Options-pointer (_cpointer 'Sass_Options))
-(define-sass sass_option_push_include_path (_fun _Sass_Options-pointer _string -> _void))
+(define-sass sass_option_push_include_path (_fun _Sass_Options-pointer _path -> _void))
 
 
 ;; Sass_Context ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
